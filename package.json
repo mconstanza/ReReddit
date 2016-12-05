@@ -1,0 +1,27 @@
+{
+  "name": "rereddit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mconstanza/ReReddit.git"
+  },
+  "author": "MConstanza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mconstanza/ReReddit/issues"
+  },
+  "homepage": "https://github.com/mconstanza/ReReddit#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "connect-mongo": "^1.3.2",
+    "express-session": "^1.14.2",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}
