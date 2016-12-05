@@ -62,11 +62,41 @@ app.use(expressSession({secret: 'darkKnight',
 app.use(passport.initialize());
 app.use(passport.session());
 
+// =======================================================
+// Handlebars for templating
+// =======================================================
+var hb = require('express-handlebars');
+app.engine('handlebars', hb({
+    defaultLayout: 'main',
+    helpers: {
+        if_eq: function(a, b, c, d, opts) {
+            if (a == b && c == d) {
+                return opts.fn(this);
+            } else {
+                return opts.inverse(this);
+            }
+        }
+    }
+}));
+app.set('view engine', 'handlebars');
 
+//============================================================================
+// Router
+//============================================================================
+var users = require('./controllers/user_controller.js');
+app.use('/', users);
 
+var articles = require('./controllers/article_controller.js');
+app.use('/', articles);
 
+//======================================================================
+// Server listening
+//======================================================================
+var port = process.env.PORT || 3000;
+app.listen(port);
+console.log('listening on ' + port);
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+// catch-all handlebars
+app.use(function(err, req, res, next) {
+    console.log(err);
 });
