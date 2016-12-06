@@ -6,8 +6,9 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
 
   author: {
-    type: String,
-    required: true
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User"
   },
 
   text: {
@@ -17,9 +18,9 @@ var CommentSchema = new Schema({
 
   article: {
     type: Schema.Types.ObjectId,
+    required: true,
     ref: "Article"
   }
-
 });
 
 var Comment = mongoose.model("Comment", CommentSchema);

@@ -1,5 +1,3 @@
-
-
 // ===================================================
 // Dependencies
 // ===================================================
@@ -51,6 +49,7 @@ db.once("open", function() {
 
 // Configuring Passport
 var passport = require('passport');
+require('./config/passport')(passport);
 var expressSession = require('express-session');
 var MongoStore = require('connect-mongo')(expressSession);
 
