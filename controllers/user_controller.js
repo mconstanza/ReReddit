@@ -22,7 +22,7 @@ router.get('/signup', function(req, res) {
 router.post('/signup', passport.authenticate('signup', {
     successRedirect: '/articles/',
     failureRedirect: '/signup/',
-    failureFlash: true
+    failureFlash: false
 }));
 
 //=============================================
@@ -33,9 +33,9 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('login', {
-  successRedirect: 'articles',
-  failureRedirect: '/login/',
-  failureFlash: true
+  successRedirect: '/scrape',
+  failureRedirect: '/login',
+  failureFlash: false
 }));
 
 module.exports = router;
