@@ -1,13 +1,36 @@
-<div id="articles">
-  {{#each articles}}
-    <div class='article'>
+<div class="row">
 
-      <a target="blank" href="{{this.link}}">
-        <img src="{{this.img}}"/>
-        <p>{{this.title}}</p>
-      </a>
+    <div class="col-lg-6">
+        <div id="articlesDiv">
+            {{#each articles}}
+                <div class='article' data-id="{{this._id}}" data-link="{{this.link}}" data-img="{{this.img}}">
+                    <img src=" {{this.img}} " />
+                    <p>{{this.title}}</p>
+                    <a target="blank " href=" {{this.link}} ">Link</a>
+                </div>
+            {{/each}}
+        </div>
     </div>
+    <!--Article Column -->
 
+    <div class="col-lg-6 text-center">
+        <div id="commentsDiv">
+            <div id="commentFormDiv">
 
-  {{/each}}
+                <form id="commentForm">
+                    <input id="commentText" name="text" type="text" />
+                    <button id="commentSubmit" data-article="none">Submit</button>
+                </form>
+
+            </div>
+
+            <div id="comments">
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Comment Column -->
 </div>
+<!-- Row -->

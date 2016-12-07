@@ -1,7 +1,8 @@
 // Dependencies
 
 var express = require('express');
-var User = require('../models/User.js');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 // var models = require('../models');
 var passport = require('passport');
 var crypto = require('crypto');

@@ -1,9 +1,11 @@
 // Dependencies
 
 var express = require('express');
-// var models = require('../models');
+var mongoose = require('mongoose');
+var ObjectId = require('mongoose').Types.ObjectId;
 var passport = require('passport');
-var Article = require('../models/Article');
+var Article = mongoose.model('Article');
+var Comment = mongoose.model('Comment');
 
 var request = require('request');
 var cheerio = require('cheerio');
@@ -14,23 +16,23 @@ var router = express.Router();
 
 // HOME PAGE
 router.get('/', function(req, res) {
+    // Scrape the news site to see if there are any new articles
     scrape();
+    // Pull the articles from the database
     Article.find().lean().exec({}, function(error, articles) {
         if (error) {
             reject(Error(error));
         } else {
-            // res.json(doc);
-            // console.log('doc: '+ doc);
-            console.log('articles: ' + JSON.stringify(articles));
-            res.render('index', {articles: articles});
+            // console.log('articles: ' + JSON.stringify(articles));
+            res.render('index', {
+                articles: articles
+            });
         }
     });
 });
 
 // PULLING ARTICLES FROM DATABASE
 router.get('/articles', function(req, res) {
-    // Scrape the news site to see if there are any new articles
-    // scrape();
     Article.find({}, function(error, doc) {
         if (error) {
             console.log(error);
@@ -38,6 +40,33 @@ router.get('/articles', function(req, res) {
             res.json(doc);
         }
     });
+});
+
+router.get('/articles/:id', function(req, res) {
+    var id = req.params.id;
+    Article.find().lean().exec({_id:id}, '_id title link img', function(err, article) {
+      if (err) console.log(err);
+      res.json(article);
+    });
+});
+
+router.post('/articles/:id', function(req, res) {
+  var comment = new Comment(req.body);
+  comment.save(function(error, doc) {
+    if (error){
+      console.log(error);
+    }
+  });
+});
+
+router.get('/articles/:id/comments', function(req, res) {
+  console.log("\nreq ID: " + req.params.id);
+  var articleId = req.params.id;
+  Comment.find({article: new ObjectId(articleId)}, 'text', function(err, comments){
+    if (err) console.log(err);
+    console.log(comments);
+    res.json(comments);
+  });
 });
 
 router.get('/scrape', function(req, res) {

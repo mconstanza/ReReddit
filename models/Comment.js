@@ -7,7 +7,7 @@ var CommentSchema = new Schema({
 
   author: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: false,
     ref: "User"
   },
 
@@ -22,8 +22,6 @@ var CommentSchema = new Schema({
     ref: "Article"
   }
 });
-
-var Comment = mongoose.model("Comment", CommentSchema);
-
+    
 // Export the model
-module.exports = Comment;
+module.exports = mongoose.model("Comment", CommentSchema);
