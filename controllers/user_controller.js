@@ -33,7 +33,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('login', {
-  successRedirect: '/scrape',
+  successRedirect: '/',
   failureRedirect: '/login',
   failureFlash: false
 }));

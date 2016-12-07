@@ -82,11 +82,11 @@ app.set('view engine', 'handlebars');
 //============================================================================
 // Router
 //============================================================================
-var users = require('./controllers/user_controller.js');
-app.use('/', users);
-
 var articles = require('./controllers/article_controller.js');
 app.use('/', articles);
+
+var users = require('./controllers/user_controller.js');
+app.use('/', users);
 
 //======================================================================
 // Server listening
