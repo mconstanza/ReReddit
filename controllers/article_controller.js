@@ -41,45 +41,7 @@ router.get('/articles', function(req, res) {
 });
 
 router.get('/scrape', function(req, res) {
-    request("http://www.reddit.com/r/aww", function(error, response, html) {
-
-        // load the web page into cheerio
-        var $ = cheerio.load(html);
-
-        // collect all of the reddit stories -- they have a '.thing' class
-        $(".thing").each(function(i, element) {
-            var result = {};
-
-            result.title = $(this).children(".entry").children(".title").text();
-            result.link = $(this).attr("data-url");
-
-            // console.log(result); // development
-
-            // create new article to save to the Database
-            var article = new Article(result);
-
-            // check if the article is already in the Database
-            Article.findOne({
-                title: article.title
-            }, 'title link', function(error, found) {
-
-                if (found) {
-                    console.log("Story already scraped.");
-                    // if article with same title is found, do not save the article in the database
-                } else {
-                    // if no match, save the article in the database
-                    article.save(function(err, doc) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("\n" + doc);
-                            console.log("Scrape Complete.");
-                        }
-                    });
-                }
-            });
-        });
-    });
+    scrape();
 });
 
 // SCRAPE FUNCTION
@@ -97,16 +59,19 @@ function scrape() {
 
                 result.title = $(this).children(".entry").children(".title").text();
                 result.link = $(this).attr("data-url");
+                result.img = $(this).children(".thumbnail").children("img").attr("src");
 
-                // console.log(result); // development
+                console.log("result: " + JSON.stringify(result)); // development
 
                 // create new article to save to the Database
                 var article = new Article(result);
 
+                console.log("\nArticle: " + article);
+
                 // check if the article is already in the Database
                 Article.findOne({
                     title: article.title
-                }, 'title link', function(error, found) {
+                }, 'title link img', function(error, found) {
 
                     if (found) {
                         // if article with same title is found, do not save the article in the database
@@ -126,19 +91,6 @@ function scrape() {
             });
             console.log("Scrape Complete.");
             resolve();
-        });
-    });
-}
-
-function fetchArticles() {
-    return new Promise(function(resolve, reject) {
-        Article.find({}, function(error, doc) {
-            if (error) {
-                reject(Error(error));
-            } else {
-                // res.json(doc);
-                resolve(doc);
-            }
         });
     });
 }

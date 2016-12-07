@@ -1,7 +1,13 @@
 <div id="articles">
   {{#each articles}}
-  <p>
-    {{this.title}}
-  </p>
+    <div class='article'>
+
+      <a target="blank" href="{{this.link}}">
+        <img src="{{this.img}}"/>
+        <p>{{this.title}}</p>
+      </a>
+    </div>
+
+
   {{/each}}
 </div>
