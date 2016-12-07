@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-lg-6">
+    <div class="col-lg-8" id="articleCol">
         <div id="articlesDiv">
             {{#each articles}}
                 <div class='article' data-id="{{this._id}}" data-link="{{this.link}}" data-img="{{this.img}}">
@@ -13,13 +13,13 @@
     </div>
     <!--Article Column -->
 
-    <div class="col-lg-6 text-center">
+    <div class="col-lg-4" id="commentCol">
         <div id="commentsDiv">
             <div id="commentFormDiv">
-
+              <h2>Comments</h2>
                 <form id="commentForm">
-                    <input id="commentText" name="text" type="text" />
-                    <button id="commentSubmit" data-article="none">Submit</button>
+                    <input class="form-control input-lg col-lg-6" id="commentText" name="text" type="text" />
+                    <button class="btn btn-primary" id="commentSubmit" data-article="none">Submit</button>
                 </form>
 
             </div>

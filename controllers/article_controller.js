@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
     // Scrape the news site to see if there are any new articles
     scrape();
     // Pull the articles from the database
-    Article.find().lean().exec({}, function(error, articles) {
+    Article.find().lean().sort({ createdAt: -1 }).exec({}, function(error, articles) {
         if (error) {
             reject(Error(error));
         } else {

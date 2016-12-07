@@ -20,6 +20,9 @@ var ArticleSchema = new Schema({
     type: String
   }
 
+},
+{
+  timestamps: true
 });
 
 var Article = mongoose.model("Article", ArticleSchema);

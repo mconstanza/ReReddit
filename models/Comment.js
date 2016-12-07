@@ -13,15 +13,20 @@ var CommentSchema = new Schema({
 
   text: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
 
   article: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: "Article"
-  }
+  },
+
+},
+{
+  timestamps: true
 });
-    
+
 // Export the model
 module.exports = mongoose.model("Comment", CommentSchema);
