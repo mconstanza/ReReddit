@@ -40,6 +40,11 @@ $(document).on('click', '.article', function(event) {
     return false;
 });
 
+// Make links clickable inside article div
+$('div a').on('click', function(e){
+    e.stopPropagation();
+});
+
 // When a user submits a comment
 $("#commentSubmit").on('click', function(event) {
     var comment = {};
@@ -58,6 +63,8 @@ $("#commentSubmit").on('click', function(event) {
         $.post("/articles/" + articleId, comment);
     }
 });
+
+
 
 
 

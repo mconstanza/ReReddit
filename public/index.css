@@ -19,6 +19,7 @@ html, body {
 
 .article {
     border-top: solid 1px #444d5b;
+    z-index: 0;
 }
 
 .articleImg {
@@ -34,6 +35,7 @@ html, body {
 .articleTextDiv a {
     font-size: 14px;
     color: #fc8005;
+    z-index: 10;
 }
 
 
@@ -53,6 +55,10 @@ html, body {
 
 #commentCol h2 {
   margin-top: 0;
+}
+
+#commentCol a {
+  color: #fc8005;
 }
 
 .comment {
