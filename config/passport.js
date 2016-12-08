@@ -1,5 +1,6 @@
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy = require('passport-local').Strategy;
+var flash = require("connect-flash");
 
 // load up the user model
 var User = require('../models/User');

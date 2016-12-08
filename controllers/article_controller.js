@@ -25,7 +25,8 @@ router.get('/', function(req, res) {
         } else {
             // console.log('articles: ' + JSON.stringify(articles));
             res.render('index', {
-                articles: articles
+                articles: articles,
+                user: req.user
             });
         }
     });
@@ -52,6 +53,9 @@ router.get('/articles/:id', function(req, res) {
 
 router.post('/articles/:id', function(req, res) {
   var comment = new Comment(req.body);
+  // add the username and userId to comment
+  comment.authorId = req.user.id;
+  comment.author = req.user.username;
   comment.save(function(error, doc) {
     if (error){
       console.log(error);
@@ -62,7 +66,7 @@ router.post('/articles/:id', function(req, res) {
 router.get('/articles/:id/comments', function(req, res) {
   console.log("\nreq ID: " + req.params.id);
   var articleId = req.params.id;
-  Comment.find({article: new ObjectId(articleId)}, 'text', function(err, comments){
+  Comment.find({article: new ObjectId(articleId)}, 'text author authorId', function(err, comments){
     if (err) console.log(err);
     console.log(comments);
     res.json(comments);
@@ -124,6 +128,11 @@ function scrape() {
     });
 }
 
+function isLoggedIn(req, res, next) {
 
+    if (req.user.authenticated)
+        return next();
+    res.redirect('/');
+}
 
 module.exports = router;

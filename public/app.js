@@ -15,11 +15,29 @@ $(document).on('click', '.article', function(event) {
 
         // once received, append those comments to the DOM
         for (var i = 0; i < comments.length; i++) {
-            var p = $("<p>");
-            p.append(comments[i].text);
-            $("#comments").append(p);
+          // div for all comment related info
+            var div = $("<div>");
+            div.addClass("comment");
+            div.attr("data-user", comments[i].author);
+
+            // the text of the comment
+            var commentText = $("<p>");
+            commentText.text(comments[i].text);
+
+            // username of commenter
+            var commentUser = $("<a>");
+            commentUser.attr("href", "/users/" + comments[i].author);
+            commentUser.text(comments[i].author);
+
+            // append elements to the div
+            div.append(commentText);
+            div.append(commentUser);
+
+            // append the div to the comments page
+            $("#comments").append(div);
         }
     });
+    return false;
 });
 
 // When a user submits a comment

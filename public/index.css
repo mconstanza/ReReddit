@@ -13,10 +13,22 @@ html, body{
   height: 100vh;
 }
 
+/*COMMENTS*************************************************************/
+/**********************************************************************/
+
+/*Add separate scrollbar for comments window*/
 #commentCol{
   overflow-y: auto;
   height: 100%;
 }
+
+.comment{
+  margin: 10px 0 10px 0;
+  padding: 5px 0 5px 0;
+  border-bottom: 1px solid black;
+}
+
+/***********************************************************************/
 
 /*Highlight article when selected*/
 .selected{
@@ -29,4 +41,47 @@ html, body{
 
 .float-left {
   float:left;
+}
+
+
+/*Scrollbars*/
+
+#articleCol::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#articleCol::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#articleCol::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #444d5b;
+}
+
+#commentCol::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#commentCol::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#commentCol::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #444d5b;
 }

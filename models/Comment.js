@@ -6,8 +6,13 @@ var Schema = mongoose.Schema;
 var CommentSchema = new Schema({
 
   author: {
+    type: String,
+    required: true,
+  },
+
+  authorId: {
     type: Schema.Types.ObjectId,
-    required: false,
+    required: true,
     ref: "User"
   },
 

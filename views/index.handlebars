@@ -1,3 +1,5 @@
+{{> navbar}}
+
 <div class="row">
 
     <div class="col-lg-8" id="articleCol">
@@ -16,12 +18,17 @@
     <div class="col-lg-4" id="commentCol">
         <div id="commentsDiv">
             <div id="commentFormDiv">
-              <h2>Comments</h2>
-                <form id="commentForm">
-                    <input class="form-control input-lg col-lg-6" id="commentText" name="text" type="text" />
-                    <button class="btn btn-primary" id="commentSubmit" data-article="none">Submit</button>
-                </form>
+                <h2>Comments</h2>{{!-- If the user is logged in, let them submit comments --}}
+                {{#if user}}
+                    <form id="commentForm">
+                        <input class="form-control input-lg col-lg-6" id="commentText" name="text" type="text" />
+                        <button class="btn btn-primary" id="commentSubmit" data-article="none">Submit</button>
+                    </form>
+                {{/if}}
 
+                {{#unless user}}
+                    <p><a href="/login">Login</a> to post comments.</p>
+                {{/unless}}
             </div>
 
             <div id="comments">

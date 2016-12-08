@@ -5,6 +5,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var flash = require('connect-flash');
 // ===================================================
 // Models
 // ===================================================
@@ -58,6 +59,7 @@ app.use(expressSession({secret: 'darkKnight',
                         resave: false,
                         saveUninitialized: false
                       }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
