@@ -3,39 +3,39 @@ html, body {
     overflow: hidden;
 }
 
-.navbar{
-  font-family: 'Oswald', sans-serif;
-
+.navbar {
+    font-family: 'Oswald', sans-serif;
 }
 
-#articlesDiv {
-    height: 10%;
-}
+#articlesDiv {}
 
 #articleCol {
     overflow-y: scroll;
-    height: 100vh;
+    height: 90vh;
 }
 
 .article {
     border-top: solid 1px #444d5b;
-    z-index: 0;
+    max-height: 140px;
+    position: relative;
 }
 
 .articleImg {
-  padding: 0;
+    padding: 0;
 }
 
 .articleTextDiv {
+    position: absolute;
     font-family: 'Oswald', sans-serif;
     font-size: 18px;
-    top: 25px;
+    vertical-align: middle;
+    top: 20%;
+    left: 160px;
 }
 
 .articleTextDiv a {
     font-size: 14px;
     color: #fc8005;
-    z-index: 10;
 }
 
 
@@ -54,11 +54,11 @@ html, body {
 }
 
 #commentCol h2 {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 #commentCol a {
-  color: #fc8005;
+    color: #fc8005;
 }
 
 .comment {
