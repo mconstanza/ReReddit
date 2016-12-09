@@ -11,7 +11,7 @@ var flash = require('connect-flash');
 // ===================================================
 var User = require("./models/User.js");
 var Article = require("./models/Article.js");
-var Comment = require("./models/comment.js");
+var Comment = require("./models/Comment.js");
 // ===================================================
 // Scraping
 // ===================================================
